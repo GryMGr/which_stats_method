@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-
-<link rel="next" href="reference.html">
+<link rel="prev" href="reference.html">
+<link rel="next" href="simple-hypothesis-testing-chi-squared-t-tests-and-anova.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -211,65 +211,123 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Dashboards project</h1>
-<p class="author"><em>Richard White</em></p>
-<p class="date"><em>2018-11-01</em></p>
-</div>
-<div id="syllabus" class="section level1 unnumbered">
-<h1>Syllabus</h1>
-<p><strong>Instructor:</strong> Richard White [<a href="mailto:richard.white@fhi.no">richard.white@fhi.no</a>]</p>
-<p><strong>Time:</strong> 09:00 - 11:45, 18th September 2017</p>
-<p><strong>Location:</strong> Main auditorium, L8, Lindern Campus, Folkehelseinstittutet, Oslo</p>
-<p><strong>Language:</strong> English</p>
-<p><strong>Format and Procedures</strong></p>
-<p>09:00 - 10:00: Lecture 1</p>
-<p>10:00 - 10:10: Break</p>
-<p>10:10 - 11:10: Lecture 2</p>
-<p>10:10 - 10:15: Break</p>
-<p>11:15 - 11:45: Examples from FHI</p>
-<p><strong>Description</strong></p>
-<p>This course will provide a basic overview of general statistical methodology that can be useful in the areas of infectious diseases, environmental medicine, and labwork. By the end of this course, students will be able to identify appropriate statistical methods for a variety of circumstances.</p>
-<p>This course will <strong>not</strong> teach students how to implement these statistical methods, as there is not sufficient time. The aim of this course is to enable the student to identify which methods are required for their study, allowing the student to identify their needs for subsequent methods courses, self-learning, or external help.</p>
-<p>You should register for this course if you are one of the following:</p>
+<div id="variables" class="section level1">
+<h1><span class="header-section-number">2</span> Variables</h1>
+<div id="introduction" class="section level2">
+<h2><span class="header-section-number">2.1</span> Introduction</h2>
+<p>A variable is anything that can be measured or counted. In general, we think of our datasets as a rectangle, with a column for each variable and a row for each observation (there are some exceptions when discussing long/wide formatted data, but that is out of the scope of this course).</p>
+<p>We care about four attributes of the variables:</p>
 <ul>
-<li>Have experience with applying statistical methods, but are sometimes confused or uncertain as to whether or not you have selected the correct method.</li>
-<li>Do not have experience with applying statistical methods, and would like to get an overview over which methods are applicable for your projects so that you can then undertake further studies in these areas.</li>
+<li>the variable’s type (statistical relevance)</li>
+<li>the different values the variable can take (statistical relevance)</li>
+<li>is the variable clean (i.e. ready to use in an analysis?) (statistical relevance)</li>
+<li>the name of the variable (useful for us)</li>
 </ul>
-<p><strong>Lecture 1</strong></p>
-<ol style="list-style-type: decimal">
-<li>Identifying continuous, categorical, count, and censored variables</li>
-<li>Identifying exposure and outcome variables</li>
-<li>Identifying when t-tests (paired and unpaired) should be used</li>
-<li>Identifying when non-parametric t-test equivalents should be used</li>
-<li>Identifying when ANOVA should be used</li>
-<li>Identifying when linear regression should be used</li>
-<li>Identifying the similarities between t-tests, ANOVA, and regression</li>
-<li>Identifying when logistic regression models should be used</li>
-<li>Identifying when Poisson/negative binomial and cox regression models should be used</li>
-<li>Identifying when chi-squared/fisher’s exact test should be used</li>
-</ol>
-<p><strong>Lecture 2</strong></p>
-<ol style="list-style-type: decimal">
-<li>Identifying when data does not have any dependencies (i.e. all observations are independent of each other) versus when data has complicated dependencies (i.e. longitudinal data, matched data, multiple cohorts)</li>
-<li>Identifying when mixed effects regression models should be used</li>
-<li>Identifying when conditional logistic regression models should be used</li>
-<li>(TBD) Understanding the different imputation methods used when lab data is below the limit of detection (LOD)</li>
-<li>(TBD) Understanding the best practices for data files and project folders</li>
-</ol>
-<p><strong>Prerequisites</strong></p>
-<p>To participate in this course it is recommended that you have some experience with either research or data.</p>
-<p><strong>Additional information</strong></p>
-<p>For the last 30 minutes of the course we will be going through examples of analyses performed at FHI and identifying which statistical methods are appropriate. If you would like your analysis to be featured/included in this section, please send an email to <a href="mailto:richard.white@fhi.no">richard.white@fhi.no</a> briefly describing your problem.</p>
+<p>We can use the fourth attribute to help us remember the first three.</p>
+</div>
+<div id="continuous-variables" class="section level2">
+<h2><span class="header-section-number">2.2</span> Continuous Variables</h2>
+<p>A variable is continuous there is a meaningful “distance” between values.</p>
+<p>For example:</p>
+<ul>
+<li>Temperature</li>
+<li>Weight</li>
+<li>Height</li>
+<li>BMI</li>
+<li>Blood pressure</li>
+<li></li>
+<li></li>
+</ul>
+<p>Clean continuous variables can be given the prefix <code>con_</code> to denote that they are clean. For example, <code>temperature</code> could be called <code>con_temperature</code> after it has been cleaned and is ready for analysis.</p>
+</div>
+<div id="binary-variables" class="section level2">
+<h2><span class="header-section-number">2.3</span> Binary Variables</h2>
+<p>A variable is binary if it can only hold two values.</p>
+<p>For example:</p>
+<ul>
+<li>0 or 1</li>
+<li>True or false</li>
+<li>Male or female</li>
+<li>Sick or healthy</li>
+<li>Born in Norway vs Born outside of Norway</li>
+<li></li>
+<li></li>
+</ul>
+<p>Clean binary variables can be given the prefix <code>is_</code> to denote that they are clean, binary, and reference the “active state”. For example, an unclean variable called <code>sex</code> could be recoded as 0 for female and 1 for male, then called <code>is_male</code> to denote that it is clean (ready for analysis), binary, and “male” is the active state when <code>is_male=1</code>.</p>
+</div>
+<div id="categorical-variable" class="section level2">
+<h2><span class="header-section-number">2.4</span> Categorical Variable</h2>
+<p>A variable is categorical if there is no meaningful “distance” between values.</p>
+<p>For example:</p>
+<ul>
+<li>Sick or healthy</li>
+<li>Born in Norway vs Born outside of Norway</li>
+<li>Cancer stage (I, II, III, or IV)</li>
+<li>BMI category (underweight, normal, or overweight)</li>
+<li></li>
+<li></li>
+</ul>
+<p>Clean categorical variables can be given the prefix <code>cat_</code> to denote that they are clean. For example, <code>BMI category</code> could be called <code>cat_bmi</code> after it has been cleaned and is ready for analysis.</p>
+</div>
+<div id="censored-variables" class="section level2">
+<h2><span class="header-section-number">2.5</span> Censored Variables</h2>
+<p>Censored variables are a subset of continuous variables. They are artificially cutoff (“censored”) at some point.</p>
+<p>For example:</p>
+<ul>
+<li>Height – if everyone over 175cm is recorded as “175+”</li>
+<li>Age – if everyone under 10 years old is recorded as “&lt;=10”</li>
+<li>Time alive since receiving illness diagnosis if there is loss to followup (i.e. we know that the person has lived at least 4 years before we lost track of them)</li>
+<li></li>
+<li></li>
+</ul>
+<p>Clean censored variables can be given the prefix <code>cen_</code> to denote that they are clean. For example, <code>time alive since receiving illness diagnosis</code> could be called <code>cen_time_alive</code> after it has been cleaned and is ready for analysis.</p>
+</div>
+<div id="count-variables" class="section level2">
+<h2><span class="header-section-number">2.6</span> Count Variables</h2>
+<p>Count variables are a subset of continuous variables. They can only have integer values (e.g. 0, 1, 2, 3).</p>
+<p>For example:</p>
+<ul>
+<li>Number of cars that use the parking lot in a day</li>
+<li>Number of influenza patients who use the hospital every day</li>
+<li>Number of tuberculosis patients who are screened every year</li>
+<li></li>
+<li></li>
+</ul>
+<p>Clean count variables can be given the prefix <code>cou_</code> to denote that they are clean. For example, <code>number of cars</code> could be called <code>cou_num_cars</code> after it has been cleaned and is ready for analysis.</p>
+</div>
+<div id="independent-versus-dependent-variables" class="section level2">
+<h2><span class="header-section-number">2.7</span> Independent Versus Dependent Variables</h2>
+<p>An independent variable is often called an exposure or predictor variable. In an experiment, this variable is manipulated by the researcher.</p>
+<p>A dependent variable is often called the outcome. In research, we generally want to see if (the following all mean the same thing):</p>
+<ul>
+<li>The dependent variable is dependent on the independent variable</li>
+<li>The predictor variable predicts the outcome.</li>
+<li>The exposure affects the outcome</li>
+</ul>
+<p>For ease of understanding, we will use the terms “outcome” and “exposure” for the rest of this course.</p>
+</div>
+<div id="dataset-workflow-pipeline" class="section level2">
+<h2><span class="header-section-number">2.8</span> Dataset workflow (pipeline)</h2>
+<ul>
+<li>We begin with a raw dataset (this is never altered)</li>
+<li>We clean the raw dataset and create new variables as needed</li>
+<li>We save a “clean” dataset (all variables have the prefixes <code>c_</code> or <code>is_</code>)</li>
+<li>We ONLY run analyses on the clean dataset</li>
+</ul>
+<p>We do all of this in “do files” that allow us to recreate the clean dataset from the raw dataset.</p>
+<p>Think of our analysis as making dinner, with the <code>do files</code> as our <code>recipe</code> and the <code>raw dataset</code> as our <code>raw ingredients</code>. The <code>recipe</code> tells us how to prepare the <code>raw ingredients</code> (<code>clean dataset</code>) and how to <code>cook</code> (<code>analyse</code>) the <code>prepared ingredients</code> (<code>clean dataset</code>) to produce the <code>food</code> (<code>results</code>).</p>
+<p>All we need are <code>raw ingredients</code> and the <code>recipe</code>! The <code>prepared ingredients</code> and the <code>food</code> are downstream by-products!</p>
+<p>This means that if our code is written correctly, we can delete our <code>clean datasets</code> and <code>results</code> without any worry, because the <code>raw dataset</code> and <code>do files</code> are sufficient.</p>
 
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="reference.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="reference.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="simple-hypothesis-testing-chi-squared-t-tests-and-anova.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

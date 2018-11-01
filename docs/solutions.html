@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
+<link rel="prev" href="examples-1.html">
 
-<link rel="next" href="reference.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -211,65 +211,146 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Dashboards project</h1>
-<p class="author"><em>Richard White</em></p>
-<p class="date"><em>2018-11-01</em></p>
-</div>
-<div id="syllabus" class="section level1 unnumbered">
-<h1>Syllabus</h1>
-<p><strong>Instructor:</strong> Richard White [<a href="mailto:richard.white@fhi.no">richard.white@fhi.no</a>]</p>
-<p><strong>Time:</strong> 09:00 - 11:45, 18th September 2017</p>
-<p><strong>Location:</strong> Main auditorium, L8, Lindern Campus, Folkehelseinstittutet, Oslo</p>
-<p><strong>Language:</strong> English</p>
-<p><strong>Format and Procedures</strong></p>
-<p>09:00 - 10:00: Lecture 1</p>
-<p>10:00 - 10:10: Break</p>
-<p>10:10 - 11:10: Lecture 2</p>
-<p>10:10 - 10:15: Break</p>
-<p>11:15 - 11:45: Examples from FHI</p>
-<p><strong>Description</strong></p>
-<p>This course will provide a basic overview of general statistical methodology that can be useful in the areas of infectious diseases, environmental medicine, and labwork. By the end of this course, students will be able to identify appropriate statistical methods for a variety of circumstances.</p>
-<p>This course will <strong>not</strong> teach students how to implement these statistical methods, as there is not sufficient time. The aim of this course is to enable the student to identify which methods are required for their study, allowing the student to identify their needs for subsequent methods courses, self-learning, or external help.</p>
-<p>You should register for this course if you are one of the following:</p>
+<div id="solutions" class="section level1">
+<h1><span class="header-section-number">8</span> Solutions</h1>
+<div id="poisons-information-center-1" class="section level2">
+<h2><span class="header-section-number">8.1</span> Poisons Information Center</h2>
+<p>Scenario:</p>
 <ul>
-<li>Have experience with applying statistical methods, but are sometimes confused or uncertain as to whether or not you have selected the correct method.</li>
-<li>Do not have experience with applying statistical methods, and would like to get an overview over which methods are applicable for your projects so that you can then undertake further studies in these areas.</li>
+<li>Approximately 40 000 calls per year</li>
+<li>The frequency of calls regarding different drugs/plants etc varies greatly, from a couple per year to thousands per year, so most probably one method will not cover everything.</li>
+<li>The registration of data is done while on the phone, and we know there are mistakes</li>
+<li>Only the field Kommentar has free text</li>
 </ul>
-<p><strong>Lecture 1</strong></p>
-<ol style="list-style-type: decimal">
-<li>Identifying continuous, categorical, count, and censored variables</li>
-<li>Identifying exposure and outcome variables</li>
-<li>Identifying when t-tests (paired and unpaired) should be used</li>
-<li>Identifying when non-parametric t-test equivalents should be used</li>
-<li>Identifying when ANOVA should be used</li>
-<li>Identifying when linear regression should be used</li>
-<li>Identifying the similarities between t-tests, ANOVA, and regression</li>
-<li>Identifying when logistic regression models should be used</li>
-<li>Identifying when Poisson/negative binomial and cox regression models should be used</li>
-<li>Identifying when chi-squared/fisher’s exact test should be used</li>
-</ol>
-<p><strong>Lecture 2</strong></p>
-<ol style="list-style-type: decimal">
-<li>Identifying when data does not have any dependencies (i.e. all observations are independent of each other) versus when data has complicated dependencies (i.e. longitudinal data, matched data, multiple cohorts)</li>
-<li>Identifying when mixed effects regression models should be used</li>
-<li>Identifying when conditional logistic regression models should be used</li>
-<li>(TBD) Understanding the different imputation methods used when lab data is below the limit of detection (LOD)</li>
-<li>(TBD) Understanding the best practices for data files and project folders</li>
-</ol>
-<p><strong>Prerequisites</strong></p>
-<p>To participate in this course it is recommended that you have some experience with either research or data.</p>
-<p><strong>Additional information</strong></p>
-<p>For the last 30 minutes of the course we will be going through examples of analyses performed at FHI and identifying which statistical methods are appropriate. If you would like your analysis to be featured/included in this section, please send an email to <a href="mailto:richard.white@fhi.no">richard.white@fhi.no</a> briefly describing your problem.</p>
+<p>Question: Is the number of calls regarding women aged 15-19 who have been exposed to paracetamol rising or falling over the years.</p>
+<p><strong>Aim</strong>: Hypothesis testing (maybe estimation of yearly effect)</p>
+<p><strong>Outcome</strong>: Count data (number of calls regarding women aged 15-19 who have been exposed to paracetamol)</p>
+<p><strong>Exposure</strong>: Continuous (year)</p>
+<p><strong>Parametric assumptions</strong>: None</p>
+<p><strong>Dependencies</strong>: None</p>
+<p><strong>Appropriate Method</strong>: Negative-binomial regression</p>
+<p><strong>Example STATA code</strong>:</p>
+<pre><code>nbreg number_of_calls year</code></pre>
+</div>
+<div id="norwegian-water-pipes-1" class="section level2">
+<h2><span class="header-section-number">8.2</span> Norwegian Water Pipes</h2>
+<p>Scenario:</p>
+<ul>
+<li>146 waterworks in 19 counties in Norway</li>
+<li>Each waterwork uses pipes to deliver water to households</li>
+<li>Information on each waterwork:</li>
+<li>Length of pipes made out of asbestos (in meters)</li>
+<li>Length of pipes made out of iron/steel (in meters)</li>
+<li>Length of pipes made out of PVC (in meters)</li>
+<li>Length of pipes made out of PE/PEH (in meters)</li>
+<li>Length of pipes made out of other (in meters)</li>
+<li>Length of pipes made out of unknown (in meters)</li>
+<li>Length of pipes installed before 1910 (in meters)</li>
+<li>Length of pipes installed in 1910-1940 (in meters)</li>
+<li>Length of pipes installed in 1941-1970 (in meters)</li>
+<li>Length of pipes installed in 1971-2000 (in meters)</li>
+<li>Length of pipes installed after 2000 (in meters)</li>
+<li>Length of pipes installed during an unknown period (in meters)</li>
+<li>Each year, some new pipes are laid to extend the network</li>
+<li>Each year, some pipes are replaced</li>
+<li>Interruption in water delivery is estimated in hours per calendar year</li>
+<li>Data is only for 2015</li>
+</ul>
+<p>Question: Is there an association between “interuption in water delivery” and “type of pipe material” and “pipe installation period”</p>
+<p><strong>Aim</strong>: Hypothesis testing</p>
+<p><strong>Outcome</strong>: Count (hours interruption in water delivery)</p>
+<p><strong>Exposure</strong>: 12 continuous variables</p>
+<p><strong>Parametric assumptions</strong>: None</p>
+<p><strong>Dependencies</strong>: No</p>
+<p><strong>Appropriate Method</strong>: Negative-binomial regression</p>
+<p><strong>Example STATA code</strong>:</p>
+<pre><code>nbreg hoursInterrupted pipesAsbestos pipesIronSteel pipesPVC ... pipes1910 ...</code></pre>
+</div>
+<div id="early-warning-system-ews-for-waterborne-outbreaks-part-1-1" class="section level2">
+<h2><span class="header-section-number">8.3</span> Early warning system (EWS) for waterborne outbreaks (part 1)</h2>
+<p>Scenario:</p>
+<ul>
+<li>NorSySS is a syndromic surveillance system for infectious diseases, run by the NIPH.</li>
+<li>The system is based on national ICPC coded consultation data from general practice in Norway.</li>
+<li>We want to study to what extent NorSySS can serve as an early warning system for local waterborne outbreaks by alerting us to increases in consultation rates for syndromes indicative of gastrointestinal diseases.<br />
+</li>
+<li>Retrospective syndrome data (number of gastritis cases, per week, for each municipality) from NorSySS will be aligned with outbreak data (outbreak=yes/no) from the national web-based outbreak rapid alert system (Vesuv) for the period 2006-2017.</li>
+</ul>
+<p>Question: Is there an association between “recorded outbreak” and “number of gastritis cases”</p>
+<p><strong>Aim</strong>: Hypothesis testing</p>
+<p><strong>Outcome</strong>: Binary (recorded outbreak)</p>
+<p><strong>Exposure</strong>: Count (number of gastritis cases)</p>
+<p><strong>Parametric assumptions</strong>: None</p>
+<p><strong>Dependencies</strong>: Yes (longitudinal data by municipality)</p>
+<p><strong>Appropriate Method</strong>: Mixed effects logistic regression</p>
+</div>
+<div id="early-warning-system-ews-for-waterborne-outbreaks-part-2-1" class="section level2">
+<h2><span class="header-section-number">8.4</span> Early warning system (EWS) for waterborne outbreaks (part 2)</h2>
+<p>Scenario:</p>
+<ul>
+<li>We have weekly data on water quality from water works (e.g. pH, turbidity)</li>
+<li>We have weekly number of gastritis cases, per week, for each municipality</li>
+<li>We hope to increase the knowledge about causes of waterborne outbreaks and to develop an improved surveillance system for early detection of future outbreaks.</li>
+</ul>
+<p>Question: Is there an association between “weekly number of gastritis cases” and “water quality from the water works”</p>
+<p><strong>Aim</strong>: Hypothesis testing</p>
+<p><strong>Outcome</strong>: Count (number of gastritis cases)</p>
+<p><strong>Exposure</strong>: Continuous (pH, turbidity)</p>
+<p><strong>Parametric assumptions</strong>: None</p>
+<p><strong>Dependencies</strong>: Yes (longitudinal data by municipality)</p>
+<p><strong>Appropriate Method</strong>: Mixed effects negative-binomial regression</p>
+</div>
+<div id="incidents-in-the-water-supply-system-and-illness-1" class="section level2">
+<h2><span class="header-section-number">8.5</span> Incidents in the water supply system and illness</h2>
+<p>Scenario:</p>
+<ul>
+<li>Data from the water works operation (pH, turbidity) will be linked to health outcome among recipients of the drinking water.</li>
+<li>The study will be a prospective cohort study, with data collected among a random selection of water works.</li>
+<li>Data from the recruited water works will be collected in the period autumn 2017 and the 12 following months.</li>
+<li>Approximately 350 water works will be recruited to provide monthly data on hygienic critical points related to operation and maintenance of the water supply system.</li>
+<li>In parallel, a cohort of approximately 9000 persons, served by water from the recruited water works, will submit monthly reports on symptoms that may indicate gastrointestinal illness.</li>
+<li>The data collection will start in the autumn of 2017 and continue for 12 months.</li>
+</ul>
+<p>Question: Is water quality a risk factor for getting sick?</p>
+<p><strong>Aim</strong>: Hypothesis testing</p>
+<p><strong>Outcome</strong>: Binary (sick yes/no)</p>
+<p><strong>Exposure</strong>: Continuous (pH, turbidity)</p>
+<p><strong>Parametric assumptions</strong>: None</p>
+<p><strong>Dependencies</strong>: Yes (longitudinal data by person, clustered by waterwork and/or municipality)</p>
+<p><strong>Appropriate Method</strong>: Mixed effects logistic regression</p>
+</div>
+<div id="compliance-with-boil-water-advisories-and-perception-of-risks-1" class="section level2">
+<h2><span class="header-section-number">8.6</span> Compliance with boil water advisories and perception of risks</h2>
+<p>Scenario:</p>
+<ul>
+<li>In this study, the compliance and perception of risks among the public with boil water advisories (BWAs) will be examined.</li>
+<li>Although BWAs is a common practice among water utilities, a meta-study suggest that there is limited information and studies on the compliance of BWAs.</li>
+<li>This part, the compliance and perception of risks will be done by studying the perception of and adherence to BWAs among the consumers of drinking water in Bærum municipality.</li>
+<li>Even though the drinking water in Bærum is considered to have good quality, Bærum – like many water works – experience situations of pressure drops due to breaks and maintenance.</li>
+<li>Research has shown that these situations may lead to an increased risk of gastrointestinal infections, and due to this the municipality of Bærum has issued a precautionary BWAs to the affected consumers with every water outage during the last 5-6 years.</li>
+<li>Every year, some 12,000-22,000 consumers have received a precautionary BWA.</li>
+<li>The purpose of these precautionary BWAs is to prevent health consequences caused by possible contamination of water. However, we know little about the consumer’s knowledge about why they receive these BWAs, as well as the way the consumers perceive and adhere to these BWAs.</li>
+<li>This is a cross-sectional study.</li>
+<li>A web-survey will be presented to a randomly selected sample of consumers who received a BWA in Bærum in 2017.</li>
+<li>The web-survey asks about adherence (yes/no) and demographics (e.g. age, sex, income)</li>
+</ul>
+<p>Question: Estimate adherence by demographics (and identify if it differs by demographics)</p>
+<p><strong>Aim</strong>: Estimation and hypothesis testing</p>
+<p><strong>Outcome</strong>: Binary (adhberence yes/no)</p>
+<p><strong>Exposure</strong>: Binary (sex), Categorical (age, income)</p>
+<p><strong>Parametric assumptions</strong>: None</p>
+<p><strong>Dependencies</strong>: No (“randomly selected sample of consumers”)</p>
+<p><strong>Appropriate Method</strong>: Logistic regression</p>
 
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
+<a href="examples-1.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
-<a href="reference.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
