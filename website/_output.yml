@@ -4,7 +4,7 @@ bookdown::gitbook:
     toc:
       collapse: section
       before: |
-        <li><a href="./">Dashboards</a></li>
+        <li><a href="./">Which Stats Method?</a></li>
       after: |
         <li><a href="https://www.fhi.no/" target="blank">www.fhi.no</a></li>
     download: ["pdf", "epub"]
